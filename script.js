@@ -65,27 +65,22 @@ btn.addEventListener("click", () => {
     log("Presentazione dello studente", tutti.map(studente => presentaStudente(studente)));
 });
 
-// Popola la lista degli studenti
-const popolaListaStudenti = () => {
+const popola = (lista) => {
     const studentList = document.getElementById("student-list");
     studentList.innerHTML = ""; // Pulisce la lista precedente
-    studenti.forEach(studente => {
+    lista.forEach(studente => {
         const li = document.createElement("li");
         li.textContent = `${studente.nome} - Voto: ${studente.voto} - Presente: ${studente.presente ? "✅" : "❌"}`;
+        li.classList.toggle(studente.voto >= 6 ? "promosso" : "bocciato"); // Aggiunge la classe in base al voto
         studentList.appendChild(li);
     });
 }
 
+// Inizializza la lista degli studenti
+const inizializzaListaStudenti = () => popola(studenti);
+
 // Filtra la lista degli studenti escludendo il nome inserito
-const filtraStudenti = (nome) => {
-    const studentList = document.getElementById("student-list");
-    studentList.innerHTML = ""; // Pulisce la lista precedente
-    studenti.filter(studente => studente.nome !== nome).forEach(studente => {
-        const li = document.createElement("li");
-        li.textContent = `${studente.nome} - Voto: ${studente.voto} - Presente: ${studente.presente ? "✅" : "❌"}`;
-        studentList.appendChild(li);
-    });
-}
+const filtraStudenti = (nome) => popola(studenti.filter(studente => studente.nome !== nome));
 
 // Rimuovi uno studente dalla lista
 const rimuoviStudente = () => {
@@ -103,4 +98,16 @@ const rimuoviStudente = () => {
     } else { log("Errore", `Studente ${nome} non trovato.`); }
 }
 
-popolaListaStudenti(); // Inizializza la lista degli studenti al caricamento della pagina
+// Applica classi diverse a seconda che lo studente sia promosso o bocciato.
+const applicaClassi = () => {
+    const studentList = document.getElementById("student-list");
+    studentList.innerHTML = ""; // Pulisce la lista precedente
+    studenti.forEach(studente => {
+        const li = document.createElement("li");
+        li.textContent = `${studente.nome} - Voto: ${studente.voto} - Presente: ${studente.presente ? "✅" : "❌"}`;
+        li.className = studente.voto >= 6 ? "promosso" : "bocciato"; // Aggiunge la classe in base al voto
+        studentList.appendChild(li);
+    });
+}
+
+inizializzaListaStudenti(); // Inizializza la lista degli studenti al caricamento della pagina

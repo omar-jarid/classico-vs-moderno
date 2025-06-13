@@ -37,3 +37,13 @@ li {
     background-color: #e9ecef;
     border-radius: 3px;
 }
+
+.promosso {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+.bocciato {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
