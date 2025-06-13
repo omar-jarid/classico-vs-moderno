@@ -64,3 +64,43 @@ btn.addEventListener("click", () => {
     const presentaStudente = ({ nome, voto, presente }) => `Ciao, sono ${nome}, ho ${voto} e sono ${presente ? "presente" : "assente"}.`;
     log("Presentazione dello studente", tutti.map(studente => presentaStudente(studente)));
 });
+
+// Popola la lista degli studenti
+const popolaListaStudenti = () => {
+    const studentList = document.getElementById("student-list");
+    studentList.innerHTML = ""; // Pulisce la lista precedente
+    studenti.forEach(studente => {
+        const li = document.createElement("li");
+        li.textContent = `${studente.nome} - Voto: ${studente.voto} - Presente: ${studente.presente ? "✅" : "❌"}`;
+        studentList.appendChild(li);
+    });
+}
+
+// Filtra la lista degli studenti escludendo il nome inserito
+const filtraStudenti = (nome) => {
+    const studentList = document.getElementById("student-list");
+    studentList.innerHTML = ""; // Pulisce la lista precedente
+    studenti.filter(studente => studente.nome !== nome).forEach(studente => {
+        const li = document.createElement("li");
+        li.textContent = `${studente.nome} - Voto: ${studente.voto} - Presente: ${studente.presente ? "✅" : "❌"}`;
+        studentList.appendChild(li);
+    });
+}
+
+// Rimuovi uno studente dalla lista
+const rimuoviStudente = () => {
+    const nome = document.getElementById("student-name").value.trim();
+
+    if (nome === "") {
+        log("Errore", "Il nome dello studente non può essere vuoto.");
+        return;
+    }
+
+    const index = studenti.findIndex(studente => studente.nome === nome);
+    if (index !== -1) {
+        filtraStudenti(nome);
+        log("Studente rimosso", `Studente ${nome} rimosso con successo.`);
+    } else { log("Errore", `Studente ${nome} non trovato.`); }
+}
+
+popolaListaStudenti(); // Inizializza la lista degli studenti al caricamento della pagina
