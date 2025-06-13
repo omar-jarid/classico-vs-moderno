@@ -59,4 +59,8 @@ btn.addEventListener("click", () => {
     });
 
     out.appendChild(ul);
+
+    // 7. Destructuring
+    const presentaStudente = ({ nome, voto, presente }) => `Ciao, sono ${nome}, ho ${voto} e sono ${presente ? "presente" : "assente"}.`;
+    log("Presentazione dello studente", tutti.map(studente => presentaStudente(studente)));
 });
