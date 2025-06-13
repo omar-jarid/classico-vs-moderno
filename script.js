@@ -42,4 +42,7 @@ btn.addEventListener("click", () => {
     // 3. Rest
     const raggruppaNomi = (...nomi) => nomi; 
     log("Raggruppamento nomi", raggruppaNomi("Mario", "Luigi", "Anna", "Beatrice", "Carlo", "Davide", "Elena", "Federico", "Giorgia", "Lorenzo", "Martina", "Simone"));
+
+    // 4. Map
+    log("Nomi e voti degli studenti", tutti.map(studente => `${studente.nome}: ${studente.voto}`));
 });
