@@ -45,4 +45,7 @@ btn.addEventListener("click", () => {
 
     // 4. Map
     log("Nomi e voti degli studenti", tutti.map(studente => `${studente.nome}: ${studente.voto}`));
+
+    // 5. Filter
+    log("Studenti presenti", tutti.filter(studente => studente.presente));
 });
