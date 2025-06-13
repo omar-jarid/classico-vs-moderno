@@ -48,4 +48,15 @@ btn.addEventListener("click", () => {
 
     // 5. Filter
     log("Studenti presenti", tutti.filter(studente => studente.presente));
+
+    // 6. forEach
+    const ul = document.createElement("ul");
+
+    tutti.forEach(studente => {
+        const li = document.createElement("li");
+        li.textContent = `${studente.nome} - ${studente.presente ? "✅" : "❌"}`;
+        ul.appendChild(li);
+    });
+
+    out.appendChild(ul);
 });
